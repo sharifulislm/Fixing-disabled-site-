@@ -3,19 +3,24 @@ const elementById = (id) => {
 };
 
 const handleSearch = () => {
+  // fixing document 
   const keyword = document.getElementById("keyword");
-  const url = `https://theaudiodb.com/api/v1/json/2/search.php?s=${keyword.value}`;
+  const keywordValue = keyword.value;
+  const url = `https://theaudiodb.com/api/v1/json/2/search.php?s=${keywordValue}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => showArtists(data));
+  keyword.value = '';
 
 };
 
 const showArtists = (data) => {
   console.log(data.artists);
   const artistContainer = document.getElementById("artist");
-  data?.artists ?.forEach((artist) => {
+  // fixing space in frome ? mark
+  data ? .artists ? .forEach((artist) => {
     console.log(artist.idArtist)
+    // Im fixing here 
     const div = document.createElement("div");
     div.classList.add("artist-card");
     div.innerHTML = `<div class="image-container">
@@ -37,6 +42,7 @@ const showArtists = (data) => {
 };
 
 const fetchAlbums = (id) => {
+  // Im fixing here also 
   const url = `https://theaudiodb.com/api/v1/json/2/album.php?i=${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -46,16 +52,18 @@ const fetchAlbums = (id) => {
 };
 
 const showAlbum = (data) => {
-  console.log(data);
-  const albumContainer =document.getElementById("albums");
+  // console.log(data);
+  const albumContainer = document.getElementById("albums");
+  // Im fixing here also 
   data.album.forEach((item) => {
-    console.log(item);
+    // console.log(item);
     const div = document.createElement("div");
     div.classList.add("album");
+    // Im fixing here also 
     div.innerHTML = `
         <div class="album-image-container">
-          <img
-            src="${item.strAlbumThumb}"
+     
+          <img src="${item.strAlbumThumb}"
             alt=""
           />
         </div>
